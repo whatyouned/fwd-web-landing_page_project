@@ -14,16 +14,15 @@ function BuildSection(){
 function BuildList(){
     NAVBAR.innerHTML="";
     document.querySelectorAll("section").forEach(
-    (section)=>{const LIST=`<li><a id="section${COUNTER}" class="l" href="#${section.id}">${section.dataset.nav}</a></li>`;
+    (section)=>{const LIST=`<li><a id="${COUNTER}" class="l" href="#${section.id}">${section.dataset.nav}</a></li>`;
     NAVBAR.insertAdjacentHTML("beforeend",LIST );   }                                                              );  
 }
-
+//Calling Four Sections By Default & Preparing Menu
 BuildSection();
 BuildSection();
 BuildSection();
 BuildSection();
 BuildList();
-//-----------------------------------
 
 
 
@@ -37,7 +36,8 @@ BuildList();
 
 
 
-//*****this part must be after the above to work
+
+//************this part must be after the above to work
 
 
 
@@ -92,9 +92,8 @@ document.onscroll = ()=>{
     const LL=document.querySelectorAll(".l"); //Get All Anchors
     const SS=document.querySelectorAll(".s"); //Get All Sections
     LL.forEach((link) => {link.classList.remove("activeList");  });
-    LL.forEach((link) => {link.classList.remove("current");  });
     SS.forEach((part) => { part.classList.remove("activeSectoin"); });
-    SS.forEach((part) => { part.classList.remove("current"); });
+    // SS.forEach((part) => { part.classList.remove("current"); });
     
 
     // console.log("hello"); 
@@ -112,20 +111,33 @@ document.onscroll = ()=>{
         const part = SECTION.getBoundingClientRect();
         if( part.top >= 0 ){
         
-        SECTION.classList.add("current");
+        // SECTION.classList.add("current");
         
             // console.log("hello"); 
-            //   console.log(SECTION.id);
+            // console.log(SECTION.id);
           
           
             // Put Anchor Active & Select Current Anchor
              SECTION.classList.add("activeSectoin");
             // Put Section Active & Select Current Section 
-            LL.forEach((link) => {if(link.classList.contains("current")==this.SECTION.classList.contains("current")){link.classList.add("activeList");}  });
-           
-      
-         
+            LL.forEach((link) => {
+                
+        //console.log("hello"); 
+        //if section id contain anchor href & this section takes class "activeSectoin"   
+        // link.getAttribute("href").contains(`"${SECTION.id}"`) && SECTION.classList.contains("current")    
+         if( link.id.contains(SECTION.id)  && SECTION.classList.contains("activeSectoin")   ){
              
+            link.classList.add("activeList");} 
+        
+        
+        
+        
+        
+        });
+            //console.log("hello"); 
+           //link.getAttribute("href").contains(`"${SECTION.id}"`)
+            //`"${SECTION.id}"`
+          //SECTION.id.contains(`nav a[href="#${link.id}"]`)         
         
         
         
@@ -135,7 +147,7 @@ document.onscroll = ()=>{
         
 })}
 
-
+//************
 
 
 
