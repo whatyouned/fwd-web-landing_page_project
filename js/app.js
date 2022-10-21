@@ -123,21 +123,22 @@ document.onscroll = ()=>{
             LL.forEach((link) => {
                 
         //console.log("hello"); 
+
+        
         //if section id contain anchor href & this section takes class "activeSectoin"   
-        // link.getAttribute("href").contains(`"${SECTION.id}"`) && SECTION.classList.contains("current")    
-         if( link.id.contains(SECTION.id)  && SECTION.classList.contains("activeSectoin")   ){
+             const SECTIONID=`"${SECTION.id}"`;
+             const LINKID=`"${link.id}"`;
+         if(  SECTIONID.includes(LINKID)   && SECTION.classList.contains("activeSectoin")   ){
              
-            link.classList.add("activeList");} 
+            link.classList.add("activeList");     } 
         
-        
+            
         
         
         
         });
-            //console.log("hello"); 
-           //link.getAttribute("href").contains(`"${SECTION.id}"`)
-            //`"${SECTION.id}"`
-          //SECTION.id.contains(`nav a[href="#${link.id}"]`)         
+
+      
         
         
         
@@ -146,6 +147,16 @@ document.onscroll = ()=>{
         
         
 })}
+
+
+
+              //"contains()" does not work with ".getAttribute("href")" and ".id"
+            // link.getAttribute("href").contains(`"${SECTION.id}"`) false code
+            //SECTION.id.contains(`"${link.id}"`)  false code
+            //(SECTION.id==link.id)
+           //link.getAttribute("href").contains(`"${SECTION.id}"`)
+            //`"${SECTION.id}"`
+          //SECTION.id.contains(`nav a[href="#${link.id}"]`)   
 
 //************
 
