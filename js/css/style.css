@@ -1,0 +1,204 @@
+
+/* --------- Public Styling ----------- */
+html{
+height: 100%;
+width: 100%;
+margin: 0;
+/* padding: 0; */
+/* padding-bottom: 60px; */
+box-sizing: border-box;
+/* position: ; */
+}
+
+body {
+    min-height: 100%;
+    box-sizing: inherit;
+    position: relative; /**/
+    margin: 0; /**/
+    padding: 0; /**/
+    /* min-height: 0vh;  */     /**/
+    width: auto;  /**/
+    scroll-behavior: smooth; /**/
+    background-color: rgba(0, 0, 255, 0.745);
+    /* background: rgb(136,203,171);
+    background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%); */
+    font-family: 'Merriweather', serif;
+    color: #fff;
+    
+}
+
+/* Typeography General*/
+h1 {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 3em;
+    /* margin: 2em 1rem; */
+    margin: 0;
+    display: inline;
+}
+#sectionButton {
+    position: relative;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 30;
+    margin: 0;
+    display: inline;
+    
+}
+
+
+@media only screen and (min-width: 35em){
+    h1 {
+        font-size: 7em;
+        margin: 2em 4rem 1em;
+    }
+}
+
+h2 {
+    border-bottom: 1px solid #cc1;
+    font-family: 'Oxygen', Sans-Serif;
+    font-size: 3em;
+    color: #fff;
+}
+
+p {
+    line-height: 1.6em;
+    color: #eee;
+}
+
+/* ---- Layout Rules ---- */
+main {
+    margin: 10vh 1em 10vh;
+}
+
+.main-hero {
+    min-height: 40vh;
+    padding-top: 3em;
+}
+
+section {
+    position: relative;
+    min-height: 80vh;
+    padding: 30px;  /*must drop*/
+    
+}
+
+section .activeSection{
+    background-color: rgba(13, 13, 169, 0.567);}
+
+/* ---- Module Rules ---- */
+
+/* Navigation Styles*/
+
+
+.navbar__menu .l {
+    display: inline-block; /**/
+    padding: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+}
+/* ????????????????????????????????  */
+.navbar__menu .l:hover {
+    background: rgba(0, 0, 0, 0.677);
+    color: #fff;
+    transition: ease 0.3s all;
+}
+
+/* .navbar__menu .l {
+    background:rgba(0, 0, 0, 0.677);
+    color: #fff;
+    transition: ease 0.3s all;
+} */
+
+
+.navbar__menu ul {
+    /* flex-wrap: wrap; */
+    padding-left: 0;
+    margin: 0;
+    text-align: right;
+    direction: ltr;
+}
+
+.navbar__menu li {
+    display: inline; /**/
+ 
+}
+
+/* Header Styles */
+
+/* header tag takes position property fixed or sticky,
+ but element inside takes flex */
+
+
+.page__header {
+    display: flex; /**/
+    position: fixed; /**/
+    background: #fff; 
+    top: 0; /**/
+    width: 100%; /**/
+    z-index: 5;
+}
+
+/* Footer Styles */
+.page__footer {
+
+    position: absolute; /**/
+ 
+    margin-bottom: -100; /**/
+    bottom: 0; /*for page not content*/
+    right: 0;left: 0;  /*to strtch footer*/
+    
+    /* by-defaul "static" 
+    *static accordeing to its father
+    does not affect by "top,left,..."
+    ---------------
+    relative accordeing to its father
+    *absolute accordeing to page
+    fixed accordeing to page even with scroll 
+    sticky    */
+    /* width: 100%; */
+    /* height: auto; */
+    padding: 10; 
+    text-align: center;
+    background: #000;
+     /* padding: 3em; */
+    color: #fff;
+    
+}
+
+.page__footer p{
+    color: #fff;
+}
+
+#scrollButton{
+position: fixed;
+right: 4%;
+bottom: 4%;
+/* right: 30px;
+bottom: 30px; */
+border-radius: 5px;
+width: 60px;
+height: 60px;
+margin: 0;
+padding: 0;
+text-align: center;
+font-size: 18px;
+color: black;
+background-color: white;
+cursor: pointer;
+border: none;
+}
+
+.activeList{
+    background: rgba(0, 0, 0, 0.677);
+    color: #fff;
+    transition: ease 0.3s all;
+
+
+}
+.activeSectoin{
+background-color:rgba(0, 0, 0, 0.229); }
+
+
+
+
+
