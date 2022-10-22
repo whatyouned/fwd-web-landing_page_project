@@ -1,169 +1,71 @@
-let COUNTER=0;
-let NAVBAR=document.getElementById("navbar__list"); //ul tag
-//Building Section Method
-function BuildSection(){
-    COUNTER+=1;
-    const SECTION=`<section id="section${COUNTER}" data-nav="Section ${COUNTER}" class="s">
-    <div class="landing__container"><h2>Section ${COUNTER}</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt. Donec bibendum, nulla eget bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue. Pellentesque maximus imperdiet elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam porttitor lacus. Morbi a tincidunt felis. Sed leo nunc, pharetra et elementum non, faucibus vitae elit. Integer nec libero venenatis libero ultricies molestie semper in tellus. Sed congue et odio sed euismod.</p><p>Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar gravida, ipsum lacus aliquet velit, vel luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.</p>
-    </div></section>`;
-    document.querySelector("main").insertAdjacentHTML("beforeend",SECTION);    
+    let COUNTER=0;
 
-}
+    let NAVBAR=document.getElementById("navbar__list"); //ul tag
+    //Building Section Method
+    function BuildSection(){
+        COUNTER+=1;
+        const SECTION=`<section id="section${COUNTER}" data-nav="Section ${COUNTER}" class="s">
+        <div class="landing__container"><h2>Section ${COUNTER}</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt. Donec bibendum, nulla eget bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue. Pellentesque maximus imperdiet elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam porttitor lacus. Morbi a tincidunt felis. Sed leo nunc, pharetra et elementum non, faucibus vitae elit. Integer nec libero venenatis libero ultricies molestie semper in tellus. Sed congue et odio sed euismod.</p><p>Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar gravida, ipsum lacus aliquet velit, vel luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.</p>
+        </div></section>`;
+        document.querySelector("main").insertAdjacentHTML("beforeend",SECTION);    
 
-//Building Navbar Lists According To Current Sections
-function BuildList(){
-    NAVBAR.innerHTML="";
-    document.querySelectorAll("section").forEach(
-    (section)=>{const LIST=`<li><a id="${COUNTER}" class="l" href="#${section.id}">${section.dataset.nav}</a></li>`;
-    NAVBAR.insertAdjacentHTML("beforeend",LIST );   }                                                              );  
-}
-//Calling Four Sections By Default & Preparing Menu
-BuildSection();
-BuildSection();
-BuildSection();
-BuildSection();
-BuildList();
+    }
 
+    //Building Navbar Lists According To Current Sections
+    function BuildList(){
+        NAVBAR.innerHTML="";
+        document.querySelectorAll("section").forEach(
+        (section)=>{const LIST=`<li><a id="${COUNTER}" class="l" href="#${section.id}">${section.dataset.nav}</a></li>`;
+        NAVBAR.insertAdjacentHTML("beforeend",LIST );   }                                                              );  
+    }
 
+    //Calling Four Sections By Default & Preparing Menu
 
+    BuildSection();
+    BuildSection();
+    BuildSection();
+    BuildSection();
+    BuildList();
 
+    //************this part must be after the above to work
 
+    //changing style of current section and certain list according to it
 
-
-
-
-
-
-
-
-
-//************this part must be after the above to work
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// class duringPageScroll{}
-// const NAV=document.getElementById("nav");  //nav tag
-// NAV.addEventListener("click",() => { });
-
-
-
-
-
-
-
-
-
-
-//changing style of current section and certain list according to it
-document.onscroll = ()=>{
+    document.onscroll = ()=>{
     /*The Next six Lines Must Be Here to arraw function see */
-    const SECTION =document.querySelectorAll(".s"); //get all sections by common class
-    const LINK =document.querySelectorAll(".l"); //get all lists by common class
-    const LL=document.querySelectorAll(".l"); //Get All Anchors
-    const SS=document.querySelectorAll(".s"); //Get All Sections
+    const LL=document.querySelectorAll(".l"); //get all Anchors by common class
+    const SS=document.querySelectorAll(".s"); //get all sections by common class
+
     LL.forEach((link) => {link.classList.remove("activeList");  });
     SS.forEach((part) => { part.classList.remove("activeSectoin"); });
-    // SS.forEach((part) => { part.classList.remove("current"); });
-    
 
-    // console.log("hello"); 
-
-    // console.log(SECTION);
     //is section in view ???
-    SECTION.forEach(
+    SS.forEach(
         
         (SECTION) => {
-            
-            // console.log("hello"); 
-        //   console.log(SECTION.id);
-        
-     
-        const part = SECTION.getBoundingClientRect();
-        if( part.top >= 0 ){
-        
-        // SECTION.classList.add("current");
-        
-            // console.log("hello"); 
-            // console.log(SECTION.id);
-          
-          
-            // Put Anchor Active & Select Current Anchor
-             SECTION.classList.add("activeSectoin");
-            // Put Section Active & Select Current Section 
+    
+            const part = SECTION.getBoundingClientRect();
+
+            if(  part.top >= 0 && part.bottom<(window.innerHeight)   ){
+
+            // Active Select Current Section 
+            SECTION.classList.add("activeSectoin");
+
+            // Active Current Anchor
+            const LL=document.querySelectorAll(".l"); //get all Anchors by common class "reapeated above"
             LL.forEach((link) => {
+                     
+            //if section id contain anchor href & this section takes class "activeSectoin"   
+             const SECTION_ID=SECTION.getAttribute("id");
+             const LINK_HREF=`"${link.getAttribute("href")}"`;
+
+            //  console.log(  LINK_HREF.includes(SECTION_ID)  );
+
+            if(  LINK_HREF.includes(SECTION_ID)   && SECTION.classList.contains("activeSectoin")   ){
                 
-        //console.log("hello"); 
-
-        
-        //if section id contain anchor href & this section takes class "activeSectoin"   
-             const SECTIONID=`"${SECTION.id}"`;
-             const LINKID=`"${link.id}"`;
-         if(  SECTIONID.includes(LINKID)   && SECTION.classList.contains("activeSectoin")   ){
-             
-            link.classList.add("activeList");     } 
-        
-            
-        
-        
-        
-        });
-
-      
-        
-        
-        
-        
-                               }
-        
-        
-})}
-
-
-
-              //"contains()" does not work with ".getAttribute("href")" and ".id"
-            // link.getAttribute("href").contains(`"${SECTION.id}"`) false code
-            //SECTION.id.contains(`"${link.id}"`)  false code
-            //(SECTION.id==link.id)
-           //link.getAttribute("href").contains(`"${SECTION.id}"`)
-            //`"${SECTION.id}"`
-          //SECTION.id.contains(`nav a[href="#${link.id}"]`)   
+                link.classList.add("activeList"); } });  }   })}
 
 //************
-
-
-
-
-
 
 
 // appearing to-top button after 800px 
@@ -172,6 +74,6 @@ window.addEventListener("scroll",(params) => {
 window.scrollY > 800 ? (SCROLLBUTTON.style.display = "block") : (SCROLLBUTTON.style.display = "none");
 });
 
+
 // Scrolling Into Top Of Page When Click On scrollTop Button
  function ScrollTop(){document.querySelector("html").scrollIntoView();}
-
