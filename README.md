@@ -1,6 +1,3 @@
 # fwd-web-landing_page_project
 
-##dsgsgsgsg
-
-
-####dsgsg
+This project apply some techniqes of Java-Script DOM to small landing page.
