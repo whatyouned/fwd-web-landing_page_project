@@ -77,14 +77,15 @@
 
         //if click on certain link of menu bar, scroll to its section
         
-        NAVBAR.addEventListener("click", () => {
-    
+        NAVBAR.addEventListener("click", (eo) => {
+            eo.preventDefault();
+       
             const LINKS=document.querySelectorAll(".l");
                 
             LINKS.forEach(   (link) => {
             
-            link.addEventListener("click", () => { 
-
+            link.addEventListener("click", (eo) => { 
+                eo.preventDefault();
             // console.log("hello");
             // SECTION_ID=link.getAttribute("data-scetion");
             const SECTION=document.getElementById( link.getAttribute("data-scetion")  );
@@ -100,7 +101,8 @@
 
         // appearing to-top button after 800px 
         const SCROLLBUTTON=document.getElementById("scrollButton");
-        window.addEventListener("scroll",(params) => {
+        window.addEventListener("scroll",(eo) => {
+        eo.preventDefault();
         window.scrollY > 800 ? (SCROLLBUTTON.style.display = "block") : (SCROLLBUTTON.style.display = "none");
         });
 
@@ -120,4 +122,6 @@
         //-------------
         //Why preventDefault
         //scroll(), scrollBy(), and scrollIntoView() are all acceptable.
+
+
 
