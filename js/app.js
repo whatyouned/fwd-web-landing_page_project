@@ -1,79 +1,123 @@
-    let COUNTER=0;
 
-    let NAVBAR=document.getElementById("navbar__list"); //ul tag
-    //Building Section Method
-    function BuildSection(){
-        COUNTER+=1;
-        const SECTION=`<section id="section${COUNTER}" data-nav="Section ${COUNTER}" class="s">
-        <div class="landing__container"><h2>Section ${COUNTER}</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt. Donec bibendum, nulla eget bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue. Pellentesque maximus imperdiet elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam porttitor lacus. Morbi a tincidunt felis. Sed leo nunc, pharetra et elementum non, faucibus vitae elit. Integer nec libero venenatis libero ultricies molestie semper in tellus. Sed congue et odio sed euismod.</p><p>Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar gravida, ipsum lacus aliquet velit, vel luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.</p>
-        </div></section>`;
-        document.querySelector("main").insertAdjacentHTML("beforeend",SECTION);    
+        let COUNTER=0;
 
-    }
+        let NAVBAR=document.getElementById("navbar__list"); //ul tag
 
-    //Building Navbar Lists According To Current Sections
-    function BuildList(){
-        NAVBAR.innerHTML="";
-        document.querySelectorAll("section").forEach(
-        (section)=>{const LIST=`<li><a id="${COUNTER}" class="l" href="#${section.id}">${section.dataset.nav}</a></li>`;
-        NAVBAR.insertAdjacentHTML("beforeend",LIST );   }                                                              );  
-    }
+        //Building Section Method
 
-    //Calling Four Sections By Default & Preparing Menu
+        function BuildSection(){
+            COUNTER+=1;
+            const SECTION=`<section id="section${COUNTER}" data-nav="Section ${COUNTER}" class="s">
+            <div class="landing__container"><h2>Section ${COUNTER}</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt. Donec bibendum, nulla eget bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue. Pellentesque maximus imperdiet elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam porttitor lacus. Morbi a tincidunt felis. Sed leo nunc, pharetra et elementum non, faucibus vitae elit. Integer nec libero venenatis libero ultricies molestie semper in tellus. Sed congue et odio sed euismod.</p><p>Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar gravida, ipsum lacus aliquet velit, vel luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.</p>
+            </div></section>`;
+            document.querySelector("main").insertAdjacentHTML("beforeend",SECTION);    
 
-    BuildSection();
-    BuildSection();
-    BuildSection();
-    BuildSection();
-    BuildList();
+        }
 
-    //************this part must be after the above to work
+        //Building Navbar Lists According To Current Sections
+        function BuildList(){
+            //const COUNTER=0;
+            NAVBAR.innerHTML="";
+            document.querySelectorAll("section").forEach(
+            (section)=>{//++COUNTER;
+                const LIST=`<li><a  data-scetion="${section.getAttribute("id")}" class="l" >${section.dataset.nav}</a></li>`;
+            NAVBAR.insertAdjacentHTML("beforeend",LIST );   }                                                              );  
+        }
 
-    //changing style of current section and certain list according to it
+        //Calling Four Sections By Default & Preparing Menu
 
-    document.onscroll = ()=>{
-    /*The Next six Lines Must Be Here to arraw function see */
-    const LL=document.querySelectorAll(".l"); //get all Anchors by common class
-    const SS=document.querySelectorAll(".s"); //get all sections by common class
+        BuildSection();
+        BuildSection();
+        BuildSection();
+        BuildSection();
+        BuildList();
 
-    LL.forEach((link) => {link.classList.remove("activeList");  });
-    SS.forEach((part) => { part.classList.remove("activeSectoin"); });
+        //************this part must be after the above to work
 
-    //is section in view ???
-    SS.forEach(
+        //changing style of current section and certain list according to it
+        /*The Next six Lines Must Be Here to arraw function see */
+        document.addEventListener("scroll",
         
-        (SECTION) => {
+        ()=>{
+            
+
+        const LL=document.querySelectorAll(".l"); //get all Anchors by common class
+        const SS=document.querySelectorAll(".s"); //get all sections by common class
     
-            const part = SECTION.getBoundingClientRect();
+        LL.forEach((link) => {link.classList.remove("activeList");  });
+        SS.forEach((part) => { part.classList.remove("activeSectoin"); });
+    
+        //is section in view ???
+        SS.forEach(
+            
+            (SECTION) => {
 
-            if(  part.top >= 0 && part.bottom<(window.innerHeight)   ){
+        const part = SECTION.getBoundingClientRect();
 
-            // Active Select Current Section 
-            SECTION.classList.add("activeSectoin");
+        if(  part.top >= 0 && part.bottom<(window.innerHeight)   ){
 
-            // Active Current Anchor
-            const LL=document.querySelectorAll(".l"); //get all Anchors by common class "reapeated above"
-            LL.forEach((link) => {
-                     
-            //if section id contain anchor href & this section takes class "activeSectoin"   
-             const SECTION_ID=SECTION.getAttribute("id");
-             const LINK_HREF=`"${link.getAttribute("href")}"`;
+        // Active Select Current Section 
+        SECTION.classList.add("activeSectoin");
 
-            //  console.log(  LINK_HREF.includes(SECTION_ID)  );
+        // Active Current Anchor
+        const LL=document.querySelectorAll(".l"); //get all Anchors by common class "reapeated above"
+        LL.forEach((link) => {
+                    
+        //if section "id" contain anchor "data-scetion" & this section takes class "activeSectoin"   
+            const SECTION_ID=SECTION.getAttribute("id");
+            const LINK_DATA=`${link.getAttribute("data-scetion")}`;
 
-            if(  LINK_HREF.includes(SECTION_ID)   && SECTION.classList.contains("activeSectoin")   ){
+        //  console.log(  LINK_HREF.includes(SECTION_ID)  );
+
+        if(  SECTION_ID.includes(LINK_DATA)   && SECTION.classList.contains("activeSectoin")   ){
+            // console.log("hello");
+            link.classList.add("activeList"); } });  }   })}
+
+        );
+
+        //if click on certain link of menu bar, scroll to its section
+        
+        NAVBAR.addEventListener("click", () => {
+    
+            const LINKS=document.querySelectorAll(".l");
                 
-                link.classList.add("activeList"); } });  }   })}
+            LINKS.forEach(   (link) => {
+            
+            link.addEventListener("click", () => { 
 
-//************
+            // console.log("hello");
+            // SECTION_ID=link.getAttribute("data-scetion");
+            const SECTION=document.getElementById( link.getAttribute("data-scetion")  );
+            // const SECTION=document.getElementById( `"${link.getAttribute("data-scetion")}"`   ); //false coe
+            SECTION.scrollIntoView({behavior: "smooth", block: "center", inline: "nearest"});
+
+            })  } )  }) 
+
+    //if click on new-secton button, scroll to its section
+        // const NEWSECTION=document.getElementById("sectionButton");
+        // NEWSECTION.addEventListener("click",() => {  });
 
 
-// appearing to-top button after 800px 
-const SCROLLBUTTON=document.getElementById("scrollButton");
-window.addEventListener("scroll",(params) => {
-window.scrollY > 800 ? (SCROLLBUTTON.style.display = "block") : (SCROLLBUTTON.style.display = "none");
-});
+        // appearing to-top button after 800px 
+        const SCROLLBUTTON=document.getElementById("scrollButton");
+        window.addEventListener("scroll",(params) => {
+        window.scrollY > 800 ? (SCROLLBUTTON.style.display = "block") : (SCROLLBUTTON.style.display = "none");
+        });
 
 
-// Scrolling Into Top Of Page When Click On scrollTop Button
- function ScrollTop(){document.querySelector("html").scrollIntoView();}
+        // Scrolling Into Top Of Page When Click On scrollTop Button
+        function ScrollTop(){document.querySelector("html").scrollIntoView();}
+
+        //scrolling smoothly by js
+        window.scroll({
+        top: 100,
+        left: 100,
+        behavior: 'smooth'
+        });
+
+        //scrolling smoothly by css
+        // body {scroll-behavior: smooth;}
+        //-------------
+        //Why preventDefault
+        //scroll(), scrollBy(), and scrollIntoView() are all acceptable.
+
