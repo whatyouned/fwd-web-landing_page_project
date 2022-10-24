@@ -1,4 +1,3 @@
-
         let COUNTER=0;
 
         let NAVBAR=document.getElementById("navbar__list"); //ul tag
@@ -35,37 +34,23 @@
         //************this part must be after the above to work
 
         //changing style of current section and certain list according to it
-        /*The Next six Lines Must Be Here to arraw function see */
+ 
         document.addEventListener("scroll",
         
         ()=>{
-            
-
+           
         const LL=document.querySelectorAll(".l"); //get all Anchors by common class
         const SS=document.querySelectorAll(".s"); //get all sections by common class
     
         LL.forEach((link) => {link.classList.remove("activeList");  });
         SS.forEach((part) => { part.classList.remove("activeSectoin"); });
     
-        //is section in view ???  #######################
+        //is section in view ??? 
         SS.forEach(
             
             (SECTION) => {
 
         const part = SECTION.getBoundingClientRect();
-        //(document.innerHeight)-(part.bottom)
-        //window.innerHeight  vs  document.innerHeight  *****
-        //(part.bottom-part.height) < 0  ===   part.top >= 0
-        //part.top >= 0 && part.bottom<(window.innerHeight)  `does not work on small devices`
-        //before scrolling on element is solution do not depend on page dimentions "below"
-        // (SECTION.scrollTop<0) || (SECTION.scrollTop<-50)  
-         //(Window.scrollY>=SECTION.offsetTop) && Window.scrollY<(SECTION.offsetTop+SECTION.clientHeight)
-         //SECTION.offsetTop>=0 && SECTION.bottom<(window.innerHeight) 
-        //part.top >= 0 && (document.innerHeight-part.bottom>0)
-         //part.top >= 0 && part.bottom<(window.innerHeight)  `does not work on small devices`
-         //part.top<window.innerHeight && window.innerHeight-part.bottom>0 
-         //document.scrollTop == document.crollY   (window.crollY  ????)
-         //ELEMENT.scrollTop    -->scrolled height from element
  
         if(   part.top >= 0 &&  part.bottom<(window.innerHeight)  ){
 
@@ -107,18 +92,12 @@
 
             })  } )  }) 
 
-        //if click on new-secton button, scroll to its section
-        // const NEWSECTION=document.getElementById("sectionButton");
-        // NEWSECTION.addEventListener("click",() => {  });
-
-
         // appearing to-top button after 800px 
         const SCROLLBUTTON=document.getElementById("scrollButton");
         window.addEventListener("scroll",(eo) => {
         eo.preventDefault();
         window.scrollY > 800 ? (SCROLLBUTTON.style.display = "block") : (SCROLLBUTTON.style.display = "none");
         });
-
 
         // Scrolling Into Top Of Page When Click On scrollTop Button
         function ScrollTop(){document.querySelector("html").scrollIntoView();}
@@ -129,12 +108,6 @@
         left: 100,
         behavior: 'smooth'
         });
-
-        //scrolling smoothly by css
-        // body {scroll-behavior: smooth;}
-        //-------------
-        //Why preventDefault
-        //scroll(), scrollBy(), and scrollIntoView() are all acceptable.
 
 
 
