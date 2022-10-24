@@ -8,7 +8,7 @@
         function BuildSection(){
             COUNTER+=1;
             const SECTION=`<section id="section${COUNTER}" data-nav="Section ${COUNTER}" class="s">
-            <div class="landing__container"><h2>Section ${COUNTER}</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt. Donec bibendum, nulla eget bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue. Pellentesque maximus imperdiet elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam porttitor lacus. Morbi a tincidunt felis. Sed leo nunc, pharetra et elementum non, faucibus vitae elit. Integer nec libero venenatis libero ultricies molestie semper in tellus. Sed congue et odio sed euismod.</p><p>Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar gravida, ipsum lacus aliquet velit, vel luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.</p>
+            <div class="landing__container"><h2>Section ${COUNTER}</h2><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt. Donec bibendum, nulla eget bibendum consectetur, sem nisi aliquam leo, ut pulvinar quam nunc eu augue. Pellentesque maximus imperdiet elit a pharetra. Duis lectus mi, aliquam in mi quis, aliquam porttitor lacus. Morbi a tincidunt felis. Sed leo nunc, pharetra et elementum non, faucibus vitae elit.</p>
             </div></section>`;
             document.querySelector("main").insertAdjacentHTML("beforeend",SECTION);    
 
@@ -47,14 +47,27 @@
         LL.forEach((link) => {link.classList.remove("activeList");  });
         SS.forEach((part) => { part.classList.remove("activeSectoin"); });
     
-        //is section in view ???
+        //is section in view ???  #######################
         SS.forEach(
             
             (SECTION) => {
 
         const part = SECTION.getBoundingClientRect();
-
-        if(  part.top >= 0 && part.bottom<(window.innerHeight)   ){
+        //(document.innerHeight)-(part.bottom)
+        //window.innerHeight  vs  document.innerHeight  *****
+        //(part.bottom-part.height) < 0  ===   part.top >= 0
+        //part.top >= 0 && part.bottom<(window.innerHeight)  `does not work on small devices`
+        //before scrolling on element is solution do not depend on page dimentions "below"
+        // (SECTION.scrollTop<0) || (SECTION.scrollTop<-50)  
+         //(Window.scrollY>=SECTION.offsetTop) && Window.scrollY<(SECTION.offsetTop+SECTION.clientHeight)
+         //SECTION.offsetTop>=0 && SECTION.bottom<(window.innerHeight) 
+        //part.top >= 0 && (document.innerHeight-part.bottom>0)
+         //part.top >= 0 && part.bottom<(window.innerHeight)  `does not work on small devices`
+         //part.top<window.innerHeight && window.innerHeight-part.bottom>0 
+         //document.scrollTop == document.crollY   (window.crollY  ????)
+         //ELEMENT.scrollTop    -->scrolled height from element
+ 
+        if(   part.top >= 0 &&  part.bottom<(window.innerHeight)  ){
 
         // Active Select Current Section 
         SECTION.classList.add("activeSectoin");
@@ -94,7 +107,7 @@
 
             })  } )  }) 
 
-    //if click on new-secton button, scroll to its section
+        //if click on new-secton button, scroll to its section
         // const NEWSECTION=document.getElementById("sectionButton");
         // NEWSECTION.addEventListener("click",() => {  });
 
@@ -122,6 +135,8 @@
         //-------------
         //Why preventDefault
         //scroll(), scrollBy(), and scrollIntoView() are all acceptable.
+
+
 
 
 
