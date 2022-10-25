@@ -2,9 +2,9 @@
 
 ## project details:
 
-1.programming languages:Java-Script DOM
-2.designing languages:HTML and CSS
-3.dependencies:free packages
+1. programming languages:Java-Script DOM
+2. designing languages:HTML and CSS
+3. dependencies:free packages
 
 This project apply some techniqes of Java-Script DOM to small landing page.
 
